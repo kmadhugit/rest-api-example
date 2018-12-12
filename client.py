@@ -37,18 +37,31 @@ URL = f'http://{hostname}:{port}/get'
 payload1 = {'name': 'madhu1'}
 payload2 = {'name': 'madhu2','age':30}
 
-r = requests.get(url=URL, params=payload1,data=payload2)
+# GET with params in URL, you can still do data=payload2, but only one of them can be received with get
+# better use POST if you want to send more encoded data.
+r = requests.get(url=URL, params=payload1)
 data = r.json()
-print(type(r),type(data),data)
+print(r.url,type(r),type(data),data)
 
+# POST with form-encoded data
+r = requests.post(url=URL, params=payload1)
+data = r.json()
+print(r.url,type(r),type(data),data)
+
+#POST with form-encoded data and params
 r = requests.post(url=URL, params=payload1,data=payload2)
 data = r.json()
-print(type(r),type(data),data)
+print(r.url,type(r),type(data),data)
 
+#GET with params and json data
 r = requests.get(url=URL, params=payload1,json=payload2)
 data = r.json()
-print(type(r),type(data),data)
+print(r.url,type(r),type(data),data)
 
+#POST with form-encoded data and json
 r = requests.post(url=URL, params=payload1,json=payload2)
 data = r.json()
-print(type(r),type(data),data)
+print(r.url,type(r),type(data),data)
+
+
+#you can use files to send files and received easily.

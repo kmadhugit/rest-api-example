@@ -16,10 +16,10 @@ def printit(msg,dict):
 def doget(): # This is called view function
 
     print(request.method)
-    printit('request.args',request.args)
-    printit('request.form',request.form)
-    printit('request.values',request.values) # values = args union form, if duplicate,args gets precedence
-    printit('request.json',request.json) # values = args union form, if duplicate,args gets precedence
+    printit('request.args',request.args) # Data send via params received as url arguments.
+    printit('request.form',request.form) # data send via data parameter, or html form values received here.
+    printit('request.values',request.values) # values = args union form, if any duplicate,args gets precedence
+    printit('request.json',request.json) # data send via data=jsonify(anything) or json=(anything)
 
     if request.content_type == 'application/json':
         k = request.json
